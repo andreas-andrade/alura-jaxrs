@@ -15,6 +15,6 @@ public class ProjetoResource {
 	@Produces(MediaType.APPLICATION_XML)
 	public String busca() {
 		ProjetoDAO dao = new ProjetoDAO();
-		return dao.busca(2l).toXML();
+		return dao.busca(1l).toXML();
 	}
  }
