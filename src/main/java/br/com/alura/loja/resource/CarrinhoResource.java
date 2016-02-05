@@ -1,4 +1,4 @@
-package br.com.alura.loja.resource;
+ package br.com.alura.loja.resource;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -17,10 +17,10 @@ public class CarrinhoResource {
 
 	@Path("{id}")
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_XML)
 	public String busca(@PathParam("id") long id) {
 		Carrinho carrinho = new CarrinhoDAO().busca(id);
-		return carrinho.toJson();
+		return carrinho.toXML();
 	}
 
 	@POST
@@ -28,6 +28,6 @@ public class CarrinhoResource {
 	public String adiciona(String conteudo) {
 		Carrinho carrinho = (Carrinho) new XStream().fromXML(conteudo);
 		new CarrinhoDAO().adiciona(carrinho);
-		return "<status> Sucesso </status>";
+		return "<status>Sucesso</status>";
 	}
 }
