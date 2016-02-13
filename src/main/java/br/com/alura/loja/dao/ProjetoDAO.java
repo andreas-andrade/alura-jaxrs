@@ -13,6 +13,7 @@ public class ProjetoDAO {
 	static {
 		banco.put(1l, new Projeto(1l, "Minha loja", 2014));
 		banco.put(2l, new Projeto(2l, "Alura", 2012));
+		banco.put(3l, new Projeto(3l, "Algar Tech", 2015));
 	}
 
 	public void adiciona(Projeto projeto) {

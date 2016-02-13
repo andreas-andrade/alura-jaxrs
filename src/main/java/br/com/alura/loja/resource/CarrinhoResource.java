@@ -26,7 +26,6 @@ public class CarrinhoResource {
 	public Response busca(@PathParam("id") long id) {
 		Carrinho carrinho = new CarrinhoDAO().busca(id);
 		return Response.ok(carrinho.toJson()).build();
-
 	}
 
 	@POST
