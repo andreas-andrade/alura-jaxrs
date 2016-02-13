@@ -1,4 +1,4 @@
-package br.com.alura.loja.resource;
+ package br.com.alura.loja.resource;
 
 import java.net.URI;
 
@@ -26,6 +26,7 @@ public class CarrinhoResource {
 	public Response busca(@PathParam("id") long id) {
 		Carrinho carrinho = new CarrinhoDAO().busca(id);
 		return Response.ok(carrinho.toJson()).build();
+
 	}
 
 	@POST

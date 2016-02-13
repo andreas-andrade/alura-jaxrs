@@ -65,5 +65,24 @@ public class ClienteTeste {
 		Assert.assertTrue(conteudo.contains("Microfone"));
 		
 	}
+//	
+//	@Test
+//    public void testaQueSuportaNovosCarrinhos(){
+//		
+//        Client client = ClientBuilder.newClient();
+//        WebTarget target = client.target("http://localhost:8080");
+//        
+//        Carrinho carrinho = new Carrinho();
+//        carrinho.adiciona(new Produto(314L, "Tablet", 999, 1));
+//        carrinho.setRua("Rua Vergueiro");
+//        carrinho.setCidade("Sao Paulo");
+//        String xml = carrinho.toXML();
+//
+//        Entity<String> entity = Entity.entity(xml, MediaType.APPLICATION_XML);
+//
+//        Response response = target.path("/carrinhos").request().post(entity);
+//        Assert.assertEquals("<status>Sucesso</status>", response.readEntity(String.class));
+//        Assert.assertEquals("<status>Sucesso</status>", response);
+//    }
 }
 
