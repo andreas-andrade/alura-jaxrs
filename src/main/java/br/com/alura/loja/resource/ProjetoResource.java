@@ -24,15 +24,14 @@ public class ProjetoResource {
 	@Path("{id}")
 	@GET
 	@Produces(MediaType.APPLICATION_XML)
-	public Response busca(@PathParam("id") long id) {
+	public Projeto busca(@PathParam("id") long id) {
 		Projeto projeto = new ProjetoDAO().busca(id);
-		return Response.ok(projeto.toJson()).build();
+		return projeto;
 	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response adiciona(String conteudo) {
-		Projeto projeto = (Projeto) new Gson().fromJson(conteudo, Projeto.class);
+	public Response adiciona(Projeto projeto) {
 		new ProjetoDAO().adiciona(projeto);
 		URI uri = URI.create("/projetos/" + projeto.getId());
 		return Response.created(uri).build();

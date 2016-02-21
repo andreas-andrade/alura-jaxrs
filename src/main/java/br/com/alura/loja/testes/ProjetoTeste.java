@@ -5,6 +5,8 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 
 import org.glassfish.grizzly.http.server.HttpServer;
+import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.filter.LoggingFilter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,13 +19,19 @@ import junit.framework.Assert;
 
 public class ProjetoTeste {
 	
-	HttpServer server;
-	
+	private HttpServer server;
+	private WebTarget target;
+	private Client client;
+
 	@Before
 	public void startaServidor() {
 		server = Servidor.inicializaServidor();
+		ClientConfig config = new ClientConfig();
+		config.register(new LoggingFilter());
+		this.client = ClientBuilder.newClient(config);
+		this.target = client.target("http://localhost:8080");
 	}
-	
+
 	@After
 	public void mataServidor() {
 		server.stop();
@@ -31,13 +39,8 @@ public class ProjetoTeste {
 	
 	@Test
 	public void testaQueBuscarUmProjetoTrazOprojetoEsperado() {
-		Client client = ClientBuilder.newClient();
-		WebTarget target = client.target("http://localhost:8080");
+		Projeto conteudo = target.path("/projetos/1").request().get(Projeto.class);
 		
-		String conteudo = target.path("/projetos/1").request().get(String.class);
-		
-		Projeto projeto = (Projeto) new XStream().fromXML(conteudo);
-		
-		Assert.assertEquals("Minha loja", projeto.getNome());
+		Assert.assertEquals("Minha loja", conteudo.getNome());
 	}
 }
